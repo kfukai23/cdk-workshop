@@ -30,5 +30,7 @@ export class HitCounter extends Construct {
     })
 
     table.grantReadWriteData(this.handler);
+
+    props.downstream.grantInvoke(this.handler);
   }
 }
