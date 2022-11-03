@@ -4,7 +4,7 @@ import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { HitCounter } from "../lib/hitcounter";
 
 // Simply testing to ensure that the synthesized stack includes a DynamoDB table
-test('DynamoDB Table Created', () => {
+test('DynamoDB Table Created With Encryption', () => {
   const stack = new cdk.Stack();
 
   // WHEN
@@ -18,7 +18,11 @@ test('DynamoDB Table Created', () => {
 
   const template = Template.fromStack(stack);
   // THEN
-  template.resourceCountIs("AWS::DynamoDB::Table", 1);
+  template.hasResourceProperties("AWS::DynamoDB::Table", {
+    SSESpecification: {
+      SSEEnabled: true
+    }
+  });
 })
 
 test ('Lmabda Has Environment Variables', () => {
