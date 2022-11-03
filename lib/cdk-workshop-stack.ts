@@ -23,7 +23,7 @@ export class CdkWorkshopStack extends cdk.Stack {
     });
 
     new TableViewer(this, 'CookiesViewer', {
-      table:
+      table: helloWithCounter.table,
       title: 'Hello Hits', // optional
     });
 
